@@ -31,6 +31,7 @@
 #include <dynamic_reconfigure/server.h>
 #include <dynamic_reconfigure_example/ExampleConfig.h>
 #include <ros/ros.h>
+#include <boost/bind/bind.hpp>
 
 class ExampleServer
 {
@@ -54,7 +55,7 @@ ExampleServer::ExampleServer() :
   ROS_INFO_STREAM(config_.str_param);
   server_.reset(new ReconfigureServer(dr_mutex_, nh_));
   dynamic_reconfigure::Server<dynamic_reconfigure_example::ExampleConfig>::CallbackType cbt =
-      boost::bind(&ExampleServer::callback, this, boost::placeholders::_1, boost::placeholders::_2);
+      boost::bind(&ExampleServer::callback, this, boost::arg<1>(), boost::arg<2>());
   server_->setCallback(cbt);
   ROS_INFO_STREAM(config_.str_param);
 }

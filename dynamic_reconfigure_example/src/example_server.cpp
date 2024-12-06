@@ -28,6 +28,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <boost/bind/bind.hpp>
 #include <dynamic_reconfigure_example/example_server.h>
 
 
@@ -46,7 +47,7 @@ void ExampleServer::onInit()
 {
   server_.reset(new ReconfigureServer(dr_mutex_, getPrivateNodeHandle()));
   dynamic_reconfigure::Server<dynamic_reconfigure_example::ExampleConfig>::CallbackType cbt =
-      boost::bind(&ExampleServer::callback, this, boost::placeholders::_1, boost::placeholders::_2);
+      boost::bind(&ExampleServer::callback, this, boost::arg<1>(), boost::arg<2>());
   server_->setCallback(cbt);
 }
 
