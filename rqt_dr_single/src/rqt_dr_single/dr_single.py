@@ -82,7 +82,7 @@ class DrSingle(Plugin):
         server_name = rospy.get_param("~server", None)
         if server_name is not None and server_name[0] != '/':
             server_name = rospy.get_namespace() + server_name
-        text = f"server name is '{server_name}'"
+        text = ("server name is '" + str(server_name) + "'")
         if server_name is None:
             rospy.logwarn(text)
             # server_name = "test"
