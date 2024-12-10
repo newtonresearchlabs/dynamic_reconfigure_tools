@@ -496,7 +496,10 @@ class DrSingle(Plugin):
                     raise RuntimeError("timeout")
             except Exception as ex:
                 elapsed = (rospy.Time.now() - t0).to_sec()
-                text = f"lost connection to server {self.server_name} after {elapsed:0.3f}s"
+                text = ("lost connection to server"
+                        + str(self.server_name)
+                        + " after elapsed: "
+                        + str(s))
                 rospy.logerr(text)
                 rospy.logerr(ex)
                 self.client = None
