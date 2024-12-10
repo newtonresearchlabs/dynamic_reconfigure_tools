@@ -222,7 +222,8 @@ class DrSingle(Plugin):
             if self.config:
                 self.update_config(self.config)
 
-    def update_description_inner(self, description) -> bool:
+    #  -> bool:
+    def update_description_inner(self, description):
         # clear the layout
         # rospy.loginfo("clearing layout " + str(self.layout.count()))
         try:
